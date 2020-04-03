@@ -1,7 +1,7 @@
 FROM debian:buster-slim
 
 ENV GRPCVERSION 1.24.0
-ENV TYKVERSION 2.9.3.2
+ENV TYKVERSION 2.9.3.1
 ENV TYKLANG ""
 
 LABEL Description="Tyk Gateway docker image" Vendor="Tyk" Version=$TYKVERSION
@@ -31,13 +31,15 @@ RUN echo "deb https://packagecloud.io/tyk/tyk-gateway/debian/ buster main" | tee
  && apt-get install --allow-unauthenticated -f --force-yes -y tyk-gateway=$TYKVERSION \
  && rm -rf /var/lib/apt/lists/*
 
-COPY ./tyk.standalone.conf /opt/tyk-gateway/tyk.conf
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+COPY ./tyk.conf /opt/tyk-gateway/tyk.conf
 COPY ./entrypoint.sh /opt/tyk-gateway/entrypoint.sh
 
 VOLUME ["/opt/tyk-gateway/"]
 
 WORKDIR /opt/tyk-gateway/
 
-EXPOSE 8080
+EXPOSE 80
 
 ENTRYPOINT ["./entrypoint.sh"]
