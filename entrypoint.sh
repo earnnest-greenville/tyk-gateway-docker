@@ -2,6 +2,14 @@
 
 TYKCONF=/opt/tyk-gateway/tyk.conf
 
+export TYK_GW_LISTENPORT="$PORT"
+export TYK_GW_SECRET="$SECRET"
+export TYK_GW_STORAGE_HOST="$REDISHOST"
+export TYK_GW_STORAGE_PORT="$RPORT"
+export TYK_GW_STORAGE_PASSWORD="$REDISPW"
+export TYK_GW_SLAVEOPTIONS_RPCKEY="$ORGID"
+export TYK_GW_SLAVEOPTIONS_APIKEY="$APIKEY"
+
 # for backwards compatibility if TYKSECRET is not empty, then set TYK_GW_SECRET to TYKSECRET
 if [[ -n "${TYKSECRET}" ]]; then
   export TYK_GW_SECRET="${TYKSECRET}"
