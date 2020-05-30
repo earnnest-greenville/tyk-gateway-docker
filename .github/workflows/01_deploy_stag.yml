@@ -1,4 +1,4 @@
-name: Build and Deploy to Staging
+name: Deploy
 on: 
   deployment
 
@@ -22,4 +22,4 @@ jobs:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
           app_name: ${{ secrets.HEROKU_STAG_APP_NAME }}
-          dockerfile_path: '.'
+          dockerfile_path: '../../'
