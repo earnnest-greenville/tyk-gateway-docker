@@ -13,7 +13,7 @@ jobs:
         uses: shitiomatic/str-replace@master
         with:
           find: '@@API_TAGS@@'
-          replace: '["preview", "staging"]'
+          replace: '["preview", "staging", "release", "demo"]'
           include: 'tyk.conf'
       - name: Build
         run: docker build . --file Dockerfile --tag registry.heroku.com/earnnest-gateway-dev/web
